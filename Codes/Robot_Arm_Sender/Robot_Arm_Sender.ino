@@ -2,8 +2,8 @@
 /*
    Author: Emre Şahin
    Project: Remote Controlled Robot Arm
-   Date: 22.01.2019
-   Version: v1.0
+   Date: 03.04.2019
+   Version: v1.1
 */
 ///////////////////////////
 #include   <MPU6050.h>
@@ -52,13 +52,13 @@ int get_gyro_data_y() {
   return gyro_data_y;
 }
 
+void send_message() {
 
-void loop(void)
-{
   radio.stopListening();
 
   message[0] = get_gyro_data_x();
   message[1] = get_gyro_data_y();
+
   printf("Now sending %d %d...\n", message[0], message[1]);
   bool ok = radio.write( message, sizeof(message));
 
@@ -67,10 +67,13 @@ void loop(void)
   else
     printf("failed.\n\r");
 
-  // Now, continue listening
   radio.startListening();
 
-
   delay(50);
+}
 
+
+void loop(void)
+{
+  send_message();
 }
