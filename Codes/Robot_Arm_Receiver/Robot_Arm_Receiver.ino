@@ -1,6 +1,5 @@
 ///////////////////////////
 /*
-   Author: Emre Şahin
    Project: Remote Controlled Robot Arm
    Date: 03.04.2019
    Version: v1.1
